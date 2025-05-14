@@ -1,12 +1,17 @@
 package com.example.helperapp_hackathon_team7;
 
+import android.content.*;
 import android.os.Bundle;
+import android.widget.*;
+import android.view.*;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.io.SyncFailedException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +26,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-
+        ImageButton menuButton = findViewById(R.id.imageButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
