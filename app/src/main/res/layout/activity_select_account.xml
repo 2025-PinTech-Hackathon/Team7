@@ -52,10 +52,10 @@
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toBottomOf="@id/statusBarSpacer"
         app:layout_constraintTop_toBottomOf="@id/statusBarSpacer"
-        tools:layout_editor_absoluteX="27dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp" />
 
 
     <LinearLayout
