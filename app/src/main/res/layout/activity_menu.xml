@@ -1,6 +1,362 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/menu_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 상단: 뒤로가기 & 검색 버튼 & 프로필 + 설정 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:layout_marginTop="20dp">
+
+            <!-- 뒤로가기 버튼 -->
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/menu_Image7"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:layout_alignParentStart="true"
+                android:contentDescription="뒤로가기" />
+
+            <!-- 돋보기 버튼 -->
+            <ImageButton
+                android:id="@+id/search_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/menu_Image8"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="검색" />
+
+            <!-- 프로필 이미지 -->
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/menu_Image20"
+                android:contentDescription="프로필"
+                android:layout_below="@id/back_button"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="24dp" />
+
+            <!-- 이름 -->
+
+            <!-- 보안 인증 이미지 -->
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/profile_image"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="11dp"
+                android:layout_toEndOf="@id/profile_image"
+                android:text="사용자"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/security_button"
+                android:layout_width="60dp"
+                android:layout_height="54dp"
+                android:layout_alignTop="@id/profile_name"
+                android:layout_marginTop="-3dp"
+                android:layout_marginEnd="1dp"
+                android:layout_toStartOf="@id/settings_button"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/menu_Image5"
+                android:contentDescription="보안 인증" />
+
+            <!-- 설정 이미지 -->
+            <ImageView
+                android:id="@+id/settings_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/menu_Image6"
+                android:contentDescription="설정"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/profile_name"
+                android:clickable="true"
+                android:focusable="true" />
+        </RelativeLayout>
+
+        <!-- 중간 메뉴: 손해보험~고객센터 (가로 4개) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="7dp"
+            android:weightSum="4">
+
+            <!-- 손해보험 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                    android:src="@drawable/menu_Image1" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="손해보험" android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- 대출비교 -->
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                    android:src="@drawable/menu_Image2" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="대출비교" android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- 카드 -->
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                    android:src="@drawable/menu_Image3" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="카드" android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- 고객센터 -->
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                <ImageView android:layout_width="40dp" android:layout_height="40dp"
+                    android:src="@drawable/menu_Image4" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="고객센터" android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 하단 버튼 9개: LinearLayout 버튼 스타일 -->
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_Image9"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="15dp"
+            android:contentDescription="상단 구분선" />
+        <!-- 예시 1: 내 자산 보기 -->
+        <LinearLayout
+            android:id="@+id/btn_asset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image22" android:layout_marginEnd="12dp"
+                android:contentDescription="내 자산 보기" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="내 자산 보기" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_Image10"
+            android:adjustViewBounds="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="하단 구분선" />
+
+        <!-- 예시 2: 청구서 -->
+        <LinearLayout
+            android:id="@+id/btn_bill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image12" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="청구서" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <!-- 같은 방식으로 해외결제, 멤버십, ... 내 주변까지 총 9개 구성 반복 -->
+        <LinearLayout
+            android:id="@+id/btn_foreign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image13" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="해외결제" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_membership"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image14" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="멤버십" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_membership2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image15" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="대학생 멤버십" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image16" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="페이상품권" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_gooddeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image17" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="굿딜" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_offline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image18" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="오프라인 매장결제" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_nearby"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image19" android:layout_marginEnd="12dp"
+                android:contentDescription="청구서" />
+
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="내 주변" android:textSize="16sp" />
+
+            <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                android:src="@drawable/menu_Image21" android:contentDescription="화살표" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
