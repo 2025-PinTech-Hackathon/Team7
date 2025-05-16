@@ -113,42 +113,52 @@
                         <LinearLayout
                             android:id="@+id/r62zkcjz96nl"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginEnd="15dp"
                             android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/charge_Button"
-                                android:layout_width="55dp"
-                                android:layout_height="match_parent"
+                            <LinearLayout
+                                android:id="@+id/rfv3qg0kgcs"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_marginEnd="10dp"
                                 android:background="#d9d9d9"
-                                android:paddingLeft="12dp"
-                                android:paddingTop="5dp"
-                                android:paddingRight="12dp"
-                                android:paddingBottom="5dp"
-                                android:text="충전"
-                                android:textColor="#7A7878"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="vertical"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="5dp">
 
+                                <TextView
+                                    android:id="@+id/r4pmdk1i062v"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="충전"
+                                    android:textColor="#7A7878"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
 
-                            <Button
-                                android:id="@+id/send_Button"
-                                android:layout_width="55dp"
-                                android:layout_height="match_parent"
+                            <LinearLayout
+                                android:id="@+id/r9t92ymwhjib"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:background="#fddd28"
                                 android:clickable="true"
                                 android:focusable="true"
-                                android:paddingLeft="12dp"
-                                android:paddingTop="5dp"
-                                android:paddingRight="12dp"
-                                android:paddingBottom="5dp"
-                                android:text="송금"
-                                android:textColor="#7A7878"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
+                                android:orientation="vertical"
+                                android:paddingHorizontal="12dp"
+                                android:paddingVertical="5dp">
 
+                                <TextView
+                                    android:id="@+id/rdpnhicavowo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="송금"
+                                    android:textColor="#7A7878"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -171,14 +181,12 @@
                         android:layout_marginBottom="2dp"
                         android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/payment_Button"
+                        <ImageView
+                            android:id="@+id/rlv7rj5hsmz"
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/bottomitem0"
-                            android:background="@android:color/transparent" />
-
+                            android:src="@drawable/bottomitem0" />
 
                         <View
                             android:layout_width="0dp"
@@ -335,7 +343,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/rr5f6"
+                            android:id="@+id/rr5f6avklzk"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
