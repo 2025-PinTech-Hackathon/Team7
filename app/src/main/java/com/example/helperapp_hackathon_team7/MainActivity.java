@@ -3,6 +3,7 @@ package com.example.helperapp_hackathon_team7;
 import android.content.*;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.*;
 import android.view.*;
 
@@ -12,6 +13,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.SyncFailedException;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,15 +24,49 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        ImageView payment_Button = findViewById(R.id.payment_Button);
+        ImageButton menuButton = findViewById(R.id.imageButton);
+        LinearLayout send_Button = findViewById(R.id.send_Button);
+
+/*-----------------------------------브로드캐스트:MainActivity-----------------------------------------*/
+        payment_Button.post(() -> {
+            try {
+                JSONArray buttonArray = new JSONArray();
+                View[] buttons = {payment_Button, menuButton, send_Button};
+                String[] ids = {"Payment", "Menu", "Send"}; //결제, 메뉴, 송금
+
+                for (int i = 0; i < buttons.length; i++) {
+                    View btn = buttons[i];
+                    int[] location = new int[2];
+                    btn.getLocationOnScreen(location);
+
+                    JSONObject obj = new JSONObject();
+                    obj.put("id", ids[i]);
+                    obj.put("x", location[0]);
+                    obj.put("y", location[1]);
+                    obj.put("width", btn.getWidth());
+                    obj.put("height", btn.getHeight());
+                    buttonArray.put(obj);
+                }
+
+                JSONObject payload = new JSONObject();
+                payload.put("screen", "MainActivity");  // 화면 이름 설정
+                payload.put("buttons", buttonArray);
+
+                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO_MENU");
+                intent.putExtra("payload", payload.toString());
+                sendBroadcast(intent);
+
+                Log.d("MainActivity 화면 정보 전송 완료.", "전송된 정보: " + payload.toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         });
 
-        ImageButton payment_Button = findViewById(R.id.payment_Button);
+/*-----------------------------------클릭리스너:MainActivity-----------------------------------------*/
         payment_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -36,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton menuButton = findViewById(R.id.imageButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,8 +83,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //activity_select_account
-        Button send_Button = findViewById(R.id.send_Button);
         send_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 }

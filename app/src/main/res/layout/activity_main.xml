@@ -140,7 +140,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/r9t92ymwhjib"
+                                android:id="@+id/send_Button"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="#fddd28"
@@ -182,7 +182,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/rlv7rj5hsmz"
+                            android:id="@+id/payment_Button"
                             android:layout_width="wrap_content"
                             android:layout_height="32dp"
                             android:scaleType="fitXY"
