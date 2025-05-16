@@ -140,7 +140,7 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/r9t92ymwhjib"
+                                android:id="@+id/송금"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="#fddd28"
@@ -178,7 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="30dp"
-                        android:layout_marginBottom="2dp"
+                        android:layout_marginBottom="5dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -195,9 +195,8 @@
 
                         <ImageView
                             android:id="@+id/rb0etg3nisa"
-                            android:layout_width="38dp"
-                            android:layout_height="35dp"
-                            android:layout_marginVertical="1dp"
+                            android:layout_width="35dp"
+                            android:layout_height="32dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/bottomitem1" />
 
@@ -208,9 +207,8 @@
 
                         <ImageView
                             android:id="@+id/rgvbr9upsb64"
-                            android:layout_width="38dp"
-                            android:layout_height="35dp"
-                            android:layout_marginVertical="2dp"
+                            android:layout_width="35dp"
+                            android:layout_height="32dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/bottomitem2" />
 
@@ -221,9 +219,9 @@
 
                         <ImageView
                             android:id="@+id/r07e18v92tdut"
-                            android:layout_width="46dp"
-                            android:layout_height="38dp"
-                            android:layout_marginVertical="5dp"
+                            android:layout_width="35dp"
+                            android:layout_height="32dp"
+                            android:layout_marginLeft="5dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/bottomitem3" />
                     </LinearLayout>
@@ -238,9 +236,9 @@
 
                         <TextView
                             android:id="@+id/rk2rjwqm1jf"
-                            android:layout_width="70dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="3dp"
+                            android:layout_marginVertical="6dp"
                             android:layout_weight="1"
                             android:text="결제"
                             android:textColor="#686464"
@@ -252,6 +250,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="47dp"
+                            android:layout_marginVertical="6dp"
+                            android:layout_marginLeft="5dp"
                             android:text="손해보험"
                             android:textColor="#686464"
                             android:textSize="13sp"
@@ -261,7 +261,7 @@
                             android:id="@+id/rad76136kelm"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginVertical="2dp"
+                            android:layout_marginVertical="6dp"
                             android:layout_marginEnd="38dp"
                             android:text="카드만들기"
                             android:textColor="#686464"
@@ -289,7 +289,7 @@
 
                         <ImageView
                             android:id="@+id/r5qspinns20t"
-                            android:layout_width="28dp"
+                            android:layout_width="35dp"
                             android:layout_height="32dp"
                             android:layout_marginEnd="58dp"
                             android:scaleType="fitXY"
@@ -297,21 +297,23 @@
 
                         <ImageView
                             android:id="@+id/rh3yzr4zuzh4"
-                            android:layout_width="42dp"
-                            android:layout_height="match_parent"
+                            android:layout_width="35dp"
+                            android:layout_height="32dp"
                             android:scaleType="fitXY"
+                            android:layout_marginLeft="5dp"
                             android:src="@drawable/bottomitem5" />
 
                         <LinearLayout
                             android:id="@+id/rrqyexd9lfbs"
-                            android:layout_width="82dp"
+                            android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:orientation="vertical"></LinearLayout>
+                            android:orientation="vertical">
+                        </LinearLayout>
 
                         <ImageView
                             android:id="@+id/rhukfwa9rqwa"
-                            android:layout_width="34dp"
+                            android:layout_width="35dp"
                             android:layout_height="32dp"
                             android:layout_marginEnd="59dp"
                             android:scaleType="fitXY"
@@ -319,7 +321,7 @@
 
                         <ImageView
                             android:id="@+id/rkvblqsfjosn"
-                            android:layout_width="34dp"
+                            android:layout_width="35dp"
                             android:layout_height="32dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/bottomitem7" />
@@ -337,6 +339,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="37dp"
+                            android:layout_marginVertical="6dp"
                             android:text="신용관리"
                             android:textColor="#686464"
                             android:textSize="13sp"
@@ -344,8 +347,10 @@
 
                         <TextView
                             android:id="@+id/rr5f6avklzk"
-                            android:layout_width="match_parent"
+                            android:layout_width="78dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginVertical="6dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_weight="1"
                             android:text="보험진단"
                             android:textColor="#686464"
@@ -357,6 +362,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="61dp"
+                            android:layout_marginVertical="6dp"
                             android:text="굿딜"
                             android:textColor="#686464"
                             android:textSize="13sp"
@@ -366,6 +372,7 @@
                             android:id="@+id/rn54u2v2n3vo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginVertical="6dp"
                             android:text="더보기"
                             android:textColor="#686464"
                             android:textSize="13sp"
