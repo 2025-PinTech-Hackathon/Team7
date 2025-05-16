@@ -1,5 +1,6 @@
 package com.example.helperapp_hackathon_team7;
 
+import android.app.ActivityManager;
 import android.content.*;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -33,13 +34,12 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intentP = new Intent();
         intentP.setComponent(new ComponentName("com.example.team7_realhelper", "com.example.team7_realhelper.MainActivity"));
-        intentP.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intentP.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
         try {
             startActivity(intentP);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(this, "앱을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
         }
-
 
         ImageView payment_Button = findViewById(R.id.payment_Button);
         ImageButton menuButton = findViewById(R.id.imageButton);
@@ -106,8 +106,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent("com.example.ACTION_REMOVE_OVERLAY");
+        intent.setPackage("com.example.team7_realhelper");
+        sendBroadcast(intent);
+
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 종료 시 필요한 작업 수행
+
+        Intent intent = new Intent("com.example.ACTION_REMOVE_OVERLAY");
+        intent.setPackage("com.example.team7_realhelper");  // B 앱 패키지명
+        sendBroadcast(intent);
+    }
+
+
 }
