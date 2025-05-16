@@ -50,7 +50,7 @@ public class SendActivity1 extends AppCompatActivity {
                 payload.put("screen", "SendActivity1");  // 화면 이름 설정
                 payload.put("buttons", buttonArray);
 
-                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO_SEND1");
+                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
                 intent.putExtra("payload", payload.toString());
                 sendBroadcast(intent);
 

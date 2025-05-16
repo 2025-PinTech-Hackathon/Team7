@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 payload.put("screen", "MainActivity");  // 화면 이름 설정
                 payload.put("buttons", buttonArray);
 
-                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO_MAIN");
+                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
                 intent.putExtra("payload", payload.toString());
                 sendBroadcast(intent);
 
