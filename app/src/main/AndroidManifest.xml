@@ -34,9 +34,6 @@
         <activity
             android:name=".SelectActivity"
             android:exported="false"/>
-        <activity
-            android:name=".Dialog_InputAccount"
-            android:exported="false"/>
 
             <activity
                 android:name=".MainActivity"
