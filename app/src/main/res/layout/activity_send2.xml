@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SendActivity2">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:contentDescription="뒤로가기"
+        android:padding="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_back" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/bank2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="카카오뱅크 1111223333333"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="홍길동 님에게"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:text="0000원"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="보낼까요?"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#808080"/>
+
+    </LinearLayout>
+    <TableLayout
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        <TableRow
+            android:layout_marginVertical="5dp">
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="15dp"
+                android:textColor="#808080"
+                android:text="수수료"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="15dp"
+                android:textColor="#808080"
+                android:text="무료"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginVertical="5dp">
+            <TextView
+                android:layout_weight="1"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="15dp"
+                android:textColor="#808080"
+                android:text="받는 분 내역 표시"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_marginHorizontal="20dp"
+                android:textSize="15dp"
+                android:textColor="#808080"
+                android:text="홍길동"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginVertical="10dp">
+            <Button
+                android:textSize="20dp"
+                android:background="#D0D0D0"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="취소" />
+            <Button
+                android:id="@+id/btn_send"
+                android:textSize="20dp"
+                android:background="#FDDD28"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="100"
+                android:text="보내기" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

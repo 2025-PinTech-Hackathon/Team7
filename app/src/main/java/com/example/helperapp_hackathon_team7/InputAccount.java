@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InputAccount extends AppCompatActivity {
 
-    Button btn_selectBank;
+    Button btn_selectBank, btn_okay;
     ImageButton btn_back;  // 다이얼로그 밖에 있는 뒤로가기 버튼
 
     @Override
@@ -26,6 +26,15 @@ public class InputAccount extends AppCompatActivity {
 
         btn_selectBank = findViewById(R.id.btn_selectBank);
         btn_back = findViewById(R.id.btn_back);  // 이 버튼은 activity_input_account.xml 안에 있어야 함
+
+        btn_okay = findViewById(R.id.btn_okay);
+        btn_okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InputAccount.this, SendActivity1.class);
+                startActivity(intent);
+            }
+        });
 
         // 뒤로가기 버튼 클릭 시
         btn_back.setOnClickListener(new View.OnClickListener() {
