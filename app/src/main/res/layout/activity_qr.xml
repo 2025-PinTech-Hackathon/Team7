@@ -84,15 +84,15 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/image_groups1" />
 
-                <ImageView
-                    android:id="@+id/image_groups2"
+                <ImageButton
+                    android:id="@+id/QRclose_Button"
                     android:layout_width="27dp"
                     android:layout_height="25dp"
                     android:layout_gravity="bottom|right"
                     android:layout_marginRight="18dp"
                     android:layout_marginBottom="40dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/image_groups2" />
+                    android:background="@drawable/image_groups2" />
 
                 <ImageView
                     android:id="@+id/image_groups"

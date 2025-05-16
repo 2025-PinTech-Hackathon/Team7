@@ -1,6 +1,7 @@
 package com.example.helperapp_hackathon_team7;
 
 import android.content.*;
+import android.media.Image;
 import android.os.Bundle;
 import android.widget.*;
 import android.view.*;
@@ -26,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        ImageButton payment_Button = findViewById(R.id.payment_Button);
+        payment_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRActivity.class);
+                startActivity(intent);
+            }
+        });
+
         ImageButton menuButton = findViewById(R.id.imageButton);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +44,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //activity_select_account
+        Button send_Button = findViewById(R.id.send_Button);
+        send_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
