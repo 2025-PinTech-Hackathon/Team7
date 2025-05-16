@@ -1,8 +1,12 @@
 package com.example.helperapp_hackathon_team7;
 
 import android.content.*;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.*;
 import android.view.*;
@@ -18,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.SyncFailedException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intentP = new Intent();
+        intentP.setComponent(new ComponentName("com.example.team7_realhelper", "com.example.team7_realhelper.MainActivity"));
+        intentP.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        try {
+            startActivity(intentP);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "앱을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+        }
+
 
         ImageView payment_Button = findViewById(R.id.payment_Button);
         ImageButton menuButton = findViewById(R.id.imageButton);
@@ -86,10 +101,13 @@ public class MainActivity extends AppCompatActivity {
         send_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
-                startActivity(intent);
+               Intent intent = new Intent(MainActivity.this, SelectActivity.class);
+               startActivity(intent);
             }
         });
+
+
+
 
     }
 }
