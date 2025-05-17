@@ -32,6 +32,9 @@ public class InputAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_account);
 
+        Intent intent = getIntent();
+        boolean guideOn = intent.getBooleanExtra("guideOn", false);
+
         btn_selectBank = findViewById(R.id.btn_selectBank);
         btn_back = findViewById(R.id.btn_back);
         accountNum = findViewById(R.id.account_num);
@@ -39,45 +42,47 @@ public class InputAccount extends AppCompatActivity {
         btn_okay = findViewById(R.id.btn_okay);
 
 /*-----------------------------------브로드캐스트:InputAccount-----------------------------------------*/
-        btn_okay.post(() -> {
-            try{
-                JSONObject obj = new JSONObject();
-                int[] location = new int[2];
-                btn_okay.getLocationOnScreen(location);
+        if(guideOn){
+            btn_okay.post(() -> {
+                try{
+                    JSONObject obj = new JSONObject();
+                    int[] location = new int[2];
+                    btn_okay.getLocationOnScreen(location);
 
-                obj.put("id", "Account_Input");
-                obj.put("x", location[0]);
-                obj.put("y", location[1]);
-                obj.put("width", btn_okay.getWidth());
-                obj.put("height", btn_okay.getHeight());
+                    obj.put("id", "Account_Input");
+                    obj.put("x", location[0]);
+                    obj.put("y", location[1]);
+                    obj.put("width", btn_okay.getWidth());
+                    obj.put("height", btn_okay.getHeight());
 
-                JSONObject payload = new JSONObject();
-                payload.put("screen", "InputAccount");
-                JSONArray buttons = new JSONArray();
-                buttons.put(obj);
-                payload.put("buttons", buttons);
+                    JSONObject payload = new JSONObject();
+                    payload.put("screen", "InputAccount");
+                    JSONArray buttons = new JSONArray();
+                    buttons.put(obj);
+                    payload.put("buttons", buttons);
 
-                Intent broadcastIntent = new Intent();
-                broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
-                broadcastIntent.setComponent(new ComponentName(
-                        "com.example.team7_realhelper",
-                        "com.example.team7_realhelper.MyReceiver"));
-                broadcastIntent.putExtra("payload", payload.toString());
-                Log.d("MainActivity", "전송된 정보: " + payload.toString());
+                    Intent broadcastIntent = new Intent();
+                    broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                    broadcastIntent.setComponent(new ComponentName(
+                            "com.example.team7_realhelper",
+                            "com.example.team7_realhelper.MyReceiver"));
+                    broadcastIntent.putExtra("payload", payload.toString());
+                    Log.d("MainActivity", "전송된 정보: " + payload.toString());
 
-                sendBroadcast(broadcastIntent);
+                    sendBroadcast(broadcastIntent);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        });
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
 
 /*-----------------------------------클릭리스너:InputAccount-----------------------------------------*/
         btn_okay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(InputAccount.this, SendActivity1.class);
+                intent.putExtra("guideOn", guideOn);
                 startActivity(intent);
             }
         });

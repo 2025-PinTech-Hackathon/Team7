@@ -28,7 +28,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     String[] menu = {"Bill", "Oversea", "Membership", "Gift", "GoodDeal", "Near"};
-
+    Boolean guideOn = false;
     int nextMenu = 0;
     private final BroadcastReceiver requestInfoReceiver = new BroadcastReceiver() {
         @Override
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 ImageView payment_Button = findViewById(R.id.payment_Button);
                 ImageButton menuButton = findViewById(R.id.imageButton);
                 Log.d("MainActivity", "수신된 정보");
+                guideOn = true;
 
                 if(request.equals("Send")){
                     Log.d("MainActivity", "Send 버튼 정보 요청 수신");
@@ -168,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent menuIntent = getIntent();
+        guideOn = menuIntent.getBooleanExtra("guideOn", false);
+
         Log.d("Oncreate", "실행1");
         IntentFilter filter = new IntentFilter("com.HelperApp_Prototype.ACTION_REQUEST_INFO");
         Log.d("Oncreate", "실행2");
@@ -196,7 +200,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QRActivity.class);
+                intent.putExtra("guideOn", guideOn);
                 startActivity(intent);
+                guideOn = false;
             }
         });
 
@@ -205,7 +211,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                 intent.putExtra("menuName", nextMenu);
+                intent.putExtra("guideOn", guideOn);
                 startActivity(intent);
+                guideOn = false;
             }
         });
 
@@ -213,7 +221,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                Intent intent = new Intent(MainActivity.this, SelectActivity.class);
+               intent.putExtra("guideOn", guideOn);
                startActivity(intent);
+               guideOn = false;
             }
         });
 
