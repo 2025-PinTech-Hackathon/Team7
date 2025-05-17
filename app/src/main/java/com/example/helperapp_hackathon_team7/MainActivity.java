@@ -27,10 +27,157 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    String[] menu = {"Bill", "Oversea", "Membership", "Gift", "GoodDeal", "Near"};
+
+    int nextMenu = 0;
+    private final BroadcastReceiver requestInfoReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("com.HelperApp_Prototype.ACTION_REQUEST_INFO".equals(intent.getAction())) {
+                String request = intent.getStringExtra("result");
+                Log.d("MainActivity", "버튼 정보 요청 수신");
+
+                LinearLayout send_Button = findViewById(R.id.send_Button);
+                ImageView payment_Button = findViewById(R.id.payment_Button);
+                ImageButton menuButton = findViewById(R.id.imageButton);
+                Log.d("MainActivity", "수신된 정보");
+
+                if(request.equals("Send")){
+                    Log.d("MainActivity", "Send 버튼 정보 요청 수신");
+                    send_Button.post(() -> {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            int[] location = new int[2];
+                            send_Button.getLocationOnScreen(location);
+
+                            obj.put("id", "Send");
+                            obj.put("x", location[0]);
+                            obj.put("y", location[1]);
+                            obj.put("width", send_Button.getWidth());
+                            obj.put("height", send_Button.getHeight());
+
+                            JSONObject payload = new JSONObject();
+                            payload.put("screen", "MainActivity");
+                            JSONArray buttons = new JSONArray();
+                            buttons.put(obj);
+                            payload.put("buttons", buttons);
+
+                            Intent broadcastIntent = new Intent();
+                            broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                            broadcastIntent.setComponent(new ComponentName(
+                                    "com.example.team7_realhelper",
+                                    "com.example.team7_realhelper.MyReceiver"));
+                            broadcastIntent.putExtra("payload", payload.toString());
+                            Log.d("MainActivity", "전송된 정보: " + payload.toString());
+
+                            sendBroadcast(broadcastIntent);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                else if(request.equals("QR")){
+                    Log.d("MainActivity", "QR 버튼 정보 요청 수신");
+                    payment_Button.post(() -> {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            int[] location = new int[2];
+                            payment_Button.getLocationOnScreen(location);
+
+                            obj.put("id", "Send");
+                            obj.put("x", location[0]);
+                            obj.put("y", location[1]);
+                            obj.put("width",payment_Button.getWidth());
+                            obj.put("height", payment_Button.getHeight());
+
+                            JSONObject payload = new JSONObject();
+                            payload.put("screen", "MainActivity");
+                            JSONArray buttons = new JSONArray();
+                            buttons.put(obj);
+                            payload.put("buttons", buttons);
+
+                            Intent broadcastIntent = new Intent();
+                            broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                            broadcastIntent.setComponent(new ComponentName(
+                                    "com.example.team7_realhelper",
+                                    "com.example.team7_realhelper.MyReceiver"));
+                            broadcastIntent.putExtra("payload", payload.toString());
+                            Log.d("MainActivity", "전송된 정보: " + payload.toString());
+
+                            sendBroadcast(broadcastIntent);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                else if(isMenu(request)){
+                    Log.d("MainActivity", "청구서 버튼 정보 요청 수신");
+                    payment_Button.post(() -> {
+                        try {
+                            JSONObject obj = new JSONObject();
+                            int[] location = new int[2];
+                            menuButton.getLocationOnScreen(location);
+
+                            obj.put("id", "Send");
+                            obj.put("x", location[0]);
+                            obj.put("y", location[1]);
+                            obj.put("width",menuButton.getWidth());
+                            obj.put("height", menuButton.getHeight());
+
+                            JSONObject payload = new JSONObject();
+                            payload.put("screen", "MainActivity");
+                            JSONArray buttons = new JSONArray();
+                            buttons.put(obj);
+                            payload.put("buttons", buttons);
+
+                            Intent broadcastIntent = new Intent();
+                            broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                            broadcastIntent.setComponent(new ComponentName(
+                                    "com.example.team7_realhelper",
+                                    "com.example.team7_realhelper.MyReceiver"));
+                            broadcastIntent.putExtra("payload", payload.toString());
+                            Log.d("MainActivity", "전송된 정보: " + payload.toString());
+
+                            sendBroadcast(broadcastIntent);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+            }
+        }
+    };
+
+    private boolean isMenu(String request){
+        boolean ismenu = false;
+        for(int i = 0; i < menu.length; i++){
+            if(request.equals(menu[i])) {
+                ismenu = true;
+                nextMenu = i;
+                break;
+            }
+
+        }
+        return ismenu;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("Oncreate", "실행1");
+        IntentFilter filter = new IntentFilter("com.HelperApp_Prototype.ACTION_REQUEST_INFO");
+        Log.d("Oncreate", "실행2");
+        registerReceiver(requestInfoReceiver, filter, Context.RECEIVER_EXPORTED);
+        Log.d("Oncreate", "실행3");
+
+        ImageView payment_Button = findViewById(R.id.payment_Button);
+        ImageButton menuButton = findViewById(R.id.imageButton);
+        LinearLayout send_Button = findViewById(R.id.send_Button);
+
 
         Intent intentP = new Intent();
         intentP.setComponent(new ComponentName("com.example.team7_realhelper", "com.example.team7_realhelper.MainActivity"));
@@ -41,45 +188,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "앱을 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
         }
 
-        ImageView payment_Button = findViewById(R.id.payment_Button);
-        ImageButton menuButton = findViewById(R.id.imageButton);
-        LinearLayout send_Button = findViewById(R.id.send_Button);
-
 /*-----------------------------------브로드캐스트:MainActivity-----------------------------------------*/
-        payment_Button.post(() -> {
-            try {
-                JSONArray buttonArray = new JSONArray();
-                View[] buttons = {payment_Button, menuButton, send_Button};
-                String[] ids = {"Payment", "Menu", "Send"}; //결제, 메뉴, 송금
 
-                for (int i = 0; i < buttons.length; i++) {
-                    View btn = buttons[i];
-                    int[] location = new int[2];
-                    btn.getLocationOnScreen(location);
-
-                    JSONObject obj = new JSONObject();
-                    obj.put("id", ids[i]);
-                    obj.put("x", location[0]);
-                    obj.put("y", location[1]);
-                    obj.put("width", btn.getWidth());
-                    obj.put("height", btn.getHeight());
-                    buttonArray.put(obj);
-                }
-
-                JSONObject payload = new JSONObject();
-                payload.put("screen", "MainActivity");  // 화면 이름 설정
-                payload.put("buttons", buttonArray);
-
-                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
-                intent.putExtra("payload", payload.toString());
-                sendBroadcast(intent);
-
-                Log.d("MainActivity 화면 정보 전송 완료.", "전송된 정보: " + payload.toString());
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        });
 
 /*-----------------------------------클릭리스너:MainActivity-----------------------------------------*/
         payment_Button.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                intent.putExtra("menuName", nextMenu);
                 startActivity(intent);
             }
         });
@@ -125,6 +236,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent("com.example.ACTION_REMOVE_OVERLAY");
         intent.setPackage("com.example.team7_realhelper");  // B 앱 패키지명
         sendBroadcast(intent);
+        unregisterReceiver(requestInfoReceiver);
     }
 
 

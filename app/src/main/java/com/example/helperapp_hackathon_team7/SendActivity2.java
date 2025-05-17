@@ -1,5 +1,6 @@
 package com.example.helperapp_hackathon_team7;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,38 @@ public class SendActivity2 extends AppCompatActivity {
         btnSend = findViewById(R.id.btn_send);
 /*-----------------------------------브로드캐스트:SendActivity2-----------------------------------------*/
         btnSend.post(() -> {
+            try{
+                JSONObject obj = new JSONObject();
+                int[] location = new int[2];
+                btnSend.getLocationOnScreen(location);
+
+                obj.put("id", "Account_Input");
+                obj.put("x", location[0]);
+                obj.put("y", location[1]);
+                obj.put("width", btnSend.getWidth());
+                obj.put("height", btnSend.getHeight());
+
+                JSONObject payload = new JSONObject();
+                payload.put("screen", "SendActivity2");
+                JSONArray buttons = new JSONArray();
+                buttons.put(obj);
+                payload.put("buttons", buttons);
+
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                broadcastIntent.setComponent(new ComponentName(
+                        "com.example.team7_realhelper",
+                        "com.example.team7_realhelper.MyReceiver"));
+                broadcastIntent.putExtra("payload", payload.toString());
+                Log.d("MainActivity", "전송된 정보: " + payload.toString());
+
+                sendBroadcast(broadcastIntent);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
+        /*btnSend.post(() -> {
             try {
                 JSONArray buttonArray = new JSONArray();
                 View[] buttons = {btnSend};
@@ -60,7 +93,7 @@ public class SendActivity2 extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-
+*/
 /*-----------------------------------브로드캐스트:SendActivity2-----------------------------------------*/
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override

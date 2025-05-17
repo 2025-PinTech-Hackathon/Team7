@@ -1,6 +1,7 @@
 package com.example.helperapp_hackathon_team7;
 
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -39,39 +40,38 @@ public class InputAccount extends AppCompatActivity {
 
 /*-----------------------------------브로드캐스트:InputAccount-----------------------------------------*/
         btn_okay.post(() -> {
-            try {
-                JSONArray buttonArray = new JSONArray();
-                View[] buttons = {accountNum, bankSelect, btn_okay};
-                String[] ids = {"Account Number Input", "Select Bank", "Okay"}; //계좌번호, 은행/증권사, 확인
+            try{
+                JSONObject obj = new JSONObject();
+                int[] location = new int[2];
+                btn_okay.getLocationOnScreen(location);
 
-                for (int i = 0; i < buttons.length; i++) {
-                    View btn = buttons[i];
-                    int[] location = new int[2];
-                    btn.getLocationOnScreen(location);
-
-                    JSONObject obj = new JSONObject();
-                    obj.put("id", ids[i]);
-                    obj.put("x", location[0]);
-                    obj.put("y", location[1]);
-                    obj.put("width", btn.getWidth());
-                    obj.put("height", btn.getHeight());
-                    buttonArray.put(obj);
-                }
+                obj.put("id", "Account_Input");
+                obj.put("x", location[0]);
+                obj.put("y", location[1]);
+                obj.put("width", btn_okay.getWidth());
+                obj.put("height", btn_okay.getHeight());
 
                 JSONObject payload = new JSONObject();
-                payload.put("screen", "InputAccount");  // 화면 이름 설정
-                payload.put("buttons", buttonArray);
+                payload.put("screen", "InputAccount");
+                JSONArray buttons = new JSONArray();
+                buttons.put(obj);
+                payload.put("buttons", buttons);
 
-                Intent intent = new Intent("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
-                intent.putExtra("payload", payload.toString());
-                sendBroadcast(intent);
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                broadcastIntent.setComponent(new ComponentName(
+                        "com.example.team7_realhelper",
+                        "com.example.team7_realhelper.MyReceiver"));
+                broadcastIntent.putExtra("payload", payload.toString());
+                Log.d("MainActivity", "전송된 정보: " + payload.toString());
 
-                Log.d("InputAccount 화면 정보 전송 완료.", "전송된 정보: " + payload.toString());
+                sendBroadcast(broadcastIntent);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         });
+
 
 /*-----------------------------------클릭리스너:InputAccount-----------------------------------------*/
         btn_okay.setOnClickListener(new View.OnClickListener() {

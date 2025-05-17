@@ -1,5 +1,6 @@
 package com.example.helperapp_hackathon_team7;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,10 @@ public class MenuActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu);
 
+        Intent menuIntent = getIntent();
+        int menu = menuIntent.getIntExtra("menuName", 0);
+
+
         btnBill = findViewById(R.id.btn_bill);
         btnOverseas = findViewById(R.id.btn_foreign);
         btnMembership = findViewById(R.id.btn_membership);
@@ -36,8 +41,43 @@ public class MenuActivity extends AppCompatActivity {
         btnNear = findViewById(R.id.btn_nearby);
 
         ImageButton back_Button = findViewById(R.id.back_button);
+        View[] btns = {btnBill, btnOverseas, btnMembership, btnGift, btnGoodDeal, btnNear};
 /*-----------------------------------브로드캐스트:MenuActivity-----------------------------------------*/
-        btnBill.post(() -> {
+
+
+        btns[menu].post(() -> {
+            try{
+                JSONObject obj = new JSONObject();
+                int[] location = new int[2];
+                btns[menu].getLocationOnScreen(location);
+
+                obj.put("id", "Account_Input");
+                obj.put("x", location[0]);
+                obj.put("y", location[1]);
+                obj.put("width", btns[menu].getWidth());
+                obj.put("height", btns[menu].getHeight());
+
+                JSONObject payload = new JSONObject();
+                payload.put("screen", "SendActivity1");
+                JSONArray buttons = new JSONArray();
+                buttons.put(obj);
+                payload.put("buttons", buttons);
+
+                Intent broadcastIntent = new Intent();
+                broadcastIntent.setAction("com.HelperApp_Prototype.ACTION_BUTTON_INFO");
+                broadcastIntent.setComponent(new ComponentName(
+                        "com.example.team7_realhelper",
+                        "com.example.team7_realhelper.MyReceiver"));
+                broadcastIntent.putExtra("payload", payload.toString());
+                Log.d("MenuActivity", "전송된 정보: " + payload.toString());
+
+                sendBroadcast(broadcastIntent);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
+        /*btnBill.post(() -> {
             try {
                 JSONArray buttonArray = new JSONArray();
                 View[] buttons = {btnBill, btnOverseas, btnMembership, btnGift, btnGoodDeal, btnQRpay, btnNear};
@@ -71,7 +111,7 @@ public class MenuActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
-
+*/
 /*-----------------------------------클릭리스너:MenuActivity-----------------------------------------*/
         back_Button.setOnClickListener(new View.OnClickListener() {
             @Override
